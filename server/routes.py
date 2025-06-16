@@ -12,9 +12,8 @@ def index():
     read = bool(request.args.get('read'))
 
     if name:
-        name = f"%{name}%"  # Add wildcards for the LIKE operator
         cursor.execute(
-            "SELECT * FROM books WHERE name LIKE %s", name
+            "SELECT * FROM books WHERE name = %s", name
         )
         books = [Book(*row) for row in cursor]
 
